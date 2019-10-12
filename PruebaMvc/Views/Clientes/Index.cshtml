@@ -1,0 +1,86 @@
+﻿@model IEnumerable<PruebaMvc.Models.Clientes>
+
+@{
+  ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+  @Html.ActionLink("Create New", "Create")
+  @using (Html.BeginForm("Index", "Clientes", FormMethod.Get))
+  {
+  <p>
+    Genre: @Html.DropDownList("User", "All")
+    <input type="submit" value="Filter" />
+  </p>
+
+}
+  </p>
+  <table class="table">
+    <tr>
+      <th>
+        @Html.DisplayNameFor(model => model.Nombre)
+      </th>
+      <th>
+        @Html.DisplayNameFor(model => model.Apellido)
+      </th>
+      <th>
+        @Html.DisplayNameFor(model => model.Rtn)
+      </th>
+      <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+      <tr>
+        <td>
+          @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.Apellido)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.Rtn)
+        </td>
+        <td>
+          @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+          @Html.ActionLink("Details/cookies/List", "Details", new { id = item.Id }) |
+          @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        </td>
+      </tr>
+    }
+
+  </table>
+
+  <div>
+
+    <input type="button" class="btn btn-primary" type="submit" title="Details" value="Documentos" onclick="location.href='@Url.Action("Index", "Documento")'" />
+
+  </div>
+
+
+  <script src="../../Scripts/jquery-3.3.1.js" type="text/javascript"></script>
+  <script type="text/javascript">
+
+
+    function Link() {
+
+      $.ajax({
+        type: "GET",
+        url: '/Documento/Index'
+      });
+    }
+    
+
+    function setCookie(c_name, value, exdays) {
+      var exdate = new Date();
+      exdate.setDate(exdate.getDate() + exdays);
+      var c_value = escape(value) + ((exdays == null) ? "" : "; expires=" + exdate.toUTCString());
+      document.cookie = c_name + "=" + c_value;
+    }
+
+  </script>
+
+
+

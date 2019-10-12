@@ -1,0 +1,90 @@
+﻿@model PruebaMvc.Vm.ClienteList
+
+@{
+  ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+  <h4>Clientes</h4>
+  <hr />
+  <dl class="dl-horizontal">
+    <dt>
+      @Html.DisplayNameFor(model => model.Nombre)
+    </dt>
+
+    <dd>
+      @Html.DisplayFor(model => model.Nombre)
+    </dd>
+
+    <dt>
+      @Html.DisplayNameFor(model => model.Apellido)
+    </dt>
+
+    <dd>
+      @Html.DisplayFor(model => model.Apellido)
+    </dd>
+
+    <dt>
+      @Html.DisplayNameFor(model => model.Rtn)
+    </dt>
+
+    <dd>
+      @Html.DisplayFor(model => model.Rtn)
+    </dd>
+
+  </dl>
+</div>
+<p>
+  @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+  @Html.ActionLink("Back to List", "Index")
+</p>
+
+
+<script src="../../Scripts/jquery-3.3.1.js" type="text/javascript"></script>
+
+<table id="tables" class="table" data-pagination="true" data-toggle="table" data-total-field="count">
+  <thead>
+    <tr>
+      <th>
+        @Html.DisplayNameFor(model => model.Nombre)
+      </th>
+      <th>
+        @Html.DisplayNameFor(model => model.Apellido)
+      </th>
+      <th>
+        @Html.DisplayNameFor(model => model.Rtn)
+      </th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var item in Model.Clienteslis)
+    {
+      <tr>
+        <td>
+          @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.Apellido)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.Rtn)
+        </td>
+        <td>
+          @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+          @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+          @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>
+@section scripts{
+  <link href="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/bootstrap-table@1.15.5/dist/bootstrap-table.js"></script>
+
+
+  
+}
